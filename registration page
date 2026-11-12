@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fa">
+  <title>Create your account</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #172033;
+      background: #f5f6fa;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+      background:
+        radial-gradient(ellipse at 12% 10%, rgba(111, 87, 255, .10), transparent 34rem),
+        #f5f6fa;
+    }
+
+    .card {
+      width: min(100%, 440px);
+      padding: 40px;
+      border: 1px solid #e8eaf1;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 20px 60px rgba(27, 35, 64, .09);
+    }
+
+    .brand {
+      display: inline-grid;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 26px;
+      place-items: center;
+      border-radius: 13px;
+      background: #6654e8;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    h1 { margin: 0; font-size: clamp(1.7rem, 5vw, 2rem); letter-spacing: -.04em; }
+    .intro { margin: 10px 0 28px; color: #687087; line-height: 1.55; }
+
+    form { display: grid; gap: 18px; }
+    .field { display: grid; gap: 7px; }
+    label { color: #30394f; font-size: .9rem; font-weight: 650; }
+    input {
+      width: 100%;
+      min-height: 48px;
+      padding: 0 14px;
+      border: 1px solid #dfe2eb;
+      border-radius: 9px;
+      background: #fff;
+      color: #172033;
+      font: inherit;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    input::placeholder { color: #9aa1b1; }
+    input:focus { outline: none; border-color: #6654e8; box-shadow: 0 0 0 3px rgba(102, 84, 232, .15); }
+
+    .terms { display: flex; align-items: flex-start; gap: 10px; color: #687087; font-size: .86rem; line-height: 1.5; }
+    .terms input { width: 17px; min-height: 17px; height: 17px; margin: 2px 0 0; accent-color: #6654e8; }
+    .terms label { color: inherit; font-size: inherit; font-weight: 400; }
+    a { color: #5544d4; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    button {
+      min-height: 50px;
+      border: 0;
+      border-radius: 9px;
+      background: #6654e8;
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .15s, transform .15s;
+    }
+    button:hover { background: #5544d4; }
+    button:active { transform: translateY(1px); }
+    button:focus-visible, a:focus-visible { outline: 3px solid #b7adff; outline-offset: 3px; }
+
+    .message { min-height: 1.3em; margin: 0; color: #26734d; font-size: .9rem; }
+    .signin { margin: 24px 0 0; color: #687087; text-align: center; font-size: .9rem; }
+
+    @media (max-width: 480px) {
+      .card { padding: 30px 22px; border-radius: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand" aria-hidden="true">D</div>
+    <h1>Create your account</h1>
+    <p class="intro">Get started by filling in the details below.</p>
+
+    <form id="registration-form">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" autocomplete="name" placeholder="Alex Morgan" required>
+      </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required>
+      </div>
+      <div class="terms">
+        <input id="terms" name="terms" type="checkbox" required>
+        <label for="terms">I agree to the <a href="#terms">Terms of Service</a> and <a href="#privacy">Privacy Policy</a>.</label>
+      </div>
+      <button type="submit">Create account</button>
+      <p class="message" id="form-message" role="status" aria-live="polite"></p>
+    </form>
+
+    <p class="signin">Already have an account? <a href="#sign-in">Sign in</a></p>
+  </main>
+
+  <script>
+    const form = document.querySelector('#registration-form');
+    const message = document.querySelector('#form-message');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      message.textContent = 'Thanks for signing up! This demo form is not connected to a server.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
